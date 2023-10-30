@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int numUniqueEmails(vector<string>& emails) {
+        unordered_set<string> s;
+        for(auto mail:emails){
+            string res = "";
+            bool athe_rate = false;
+            for(int i=0;i<mail.size();i++){
+                if(mail[i] == '@'){
+                    while(i < mail.size()){
+                        res += mail[i];
+                        i++;
+                    }
+                    break;
+                }
+                if(mail[i] == '.') continue;
+                if(mail[i] == '+'){
+                    while(mail[i+1] != '@')
+                        i++;
+                }
+                else res += mail[i];
+            }
+            s.insert(res);
+        }
+        return s.size();
+    }
+};
