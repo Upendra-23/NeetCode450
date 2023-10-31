@@ -1,0 +1,24 @@
+string encode(vector<string> &strs) {
+    string res = "";
+    for (auto word : strs) {
+        res += to_string(word.size());
+        res += "#";
+        res += word;
+    }
+    return res;
+}
+
+vector<string> decode(string &str) {
+    vector<string> ans;
+    int i = 0, n = str.size();
+    while (i < n) {
+        string digit = "";
+        while (i < n && str[i] != '#')
+            digit += str[i++];
+        int len = stoi(digit);
+        i += 1;
+        ans.push_back(str.substr(i, len));
+        i += len;
+    }
+    return ans;
+}
